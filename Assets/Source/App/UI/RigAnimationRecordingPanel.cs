@@ -110,6 +110,7 @@ public class RigAnimationRecordingPanel : MonoBehaviour
         if (state == State.Replay)
         {
             recordingButtonText.text = RecordingButtonPlayText;
+            recordingTimeText.text = StartTimeText;
             replayText.gameObject.SetActive(false);
             state = State.RecordedIdle;
         }
@@ -151,6 +152,7 @@ public class RigAnimationRecordingPanel : MonoBehaviour
                 cancelReplayButton.gameObject.SetActive(false);
                 replayText.gameObject.SetActive(false);
                 recordingButtonText.text = RecordingButtonStartRecText;
+                recordingTimeText.text = StartTimeText;
                 state = State.Idle;
                 break;
             default:
@@ -160,6 +162,7 @@ public class RigAnimationRecordingPanel : MonoBehaviour
 
     private void OnRecordingButtonClick()
     {
+        recordingTimeText.text = StartTimeText;
         switch (state)
         {
             case State.Idle:
@@ -182,13 +185,11 @@ public class RigAnimationRecordingPanel : MonoBehaviour
                     cancelReplayButton.gameObject.SetActive(true);
                     recordingButtonText.text = RecordingButtonPlayText;
                     recordingButtonImage.color = Color.white;
-                    recordingTimeText.text = StartTimeText;
                     state = State.RecordedIdle;
                 }
                 break;
             case State.RecordedIdle:
                 // start replay
-                recordingTimeText.text = StartTimeText;
                 recordingStartTime = Time.time;
                 recordingButtonText.text = RecordingButtonStopText;
                 replayText.gameObject.SetActive(true);
@@ -197,7 +198,6 @@ public class RigAnimationRecordingPanel : MonoBehaviour
                 break;
             case State.Replay:
                 // stop replay;
-                recordingTimeText.text = StartTimeText;
                 recordingButtonText.text = RecordingButtonPlayText;
                 replayText.gameObject.SetActive(false);
                 SetTrigger(TriggerName.idle);
