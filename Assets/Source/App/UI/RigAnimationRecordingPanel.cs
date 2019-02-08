@@ -100,11 +100,6 @@ public class RigAnimationRecordingPanel : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
-    {
-        recorder.OwnLateUpdate();
-    }
-
     public void OnRecordedStateExit()
     {
         if (state == State.Replay)
@@ -169,7 +164,7 @@ public class RigAnimationRecordingPanel : MonoBehaviour
                 if (!recorder.IsRecording)
                 {
                     recordingStartTime = Time.time;
-                    recorder.StartRecording(false);
+                    recorder.StartRecording(true, true);
                     recordingButtonText.text = RecordingButtonStopRecText;
                     recordingButtonImage.color = Color.red;
                     state = State.Recording;

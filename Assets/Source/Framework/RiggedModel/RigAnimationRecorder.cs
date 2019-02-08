@@ -71,13 +71,13 @@ namespace DC
 			}
 		}
 
-		public void StartRecording(bool selfUpdate)
+		public void StartRecording(bool selfUpdate, bool positions)
 		{
 			SelfUpdate = selfUpdate;
 			foreach (var kvp in transformAnimations)
 			{
 				kvp.Value.Clear();
-				kvp.Value.SetCurveComponentsEnabled(false, true, false);
+				kvp.Value.SetCurveComponentsEnabled(positions, true, false);
 			}
 			TransformAnimation hipsTransformAnimation = GetTransformAnimation(hipsBone);
 			if (hipsTransformAnimation != null)
