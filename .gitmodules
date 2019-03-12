@@ -1,0 +1,3 @@
+[submodule "Assets/External/Mindpower"]
+	path = Assets/External/Mindpower
+	url = https://github.com/exuczen/Mindpower.git

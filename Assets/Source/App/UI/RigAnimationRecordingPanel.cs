@@ -164,7 +164,7 @@ public class RigAnimationRecordingPanel : MonoBehaviour
                 if (!recorder.IsRecording)
                 {
                     recordingStartTime = Time.time;
-                    recorder.StartRecording(true, true);
+                    recorder.StartRecording(true, true, false);
                     recordingButtonText.text = RecordingButtonStopRecText;
                     recordingButtonImage.color = Color.red;
                     state = State.Recording;
@@ -174,7 +174,8 @@ public class RigAnimationRecordingPanel : MonoBehaviour
                 if (recorder.IsRecording)
                 {
                     recorder.StopRecording();
-                    AnimationClip clip = recorder.SaveRecording(DataFilePath, AnimationClipsFolderPath, AnimationClipName, false);
+                    AnimationClip clip = recorder.SaveRecording(DataFilePath, false);
+                    AssetUtil.CreateAsset(clip, AnimationClipsFolderPath, AnimationClipName);
                     OverrideAnimationClip(RecordedClipKeyName, clip);
                     Debug.Log(GetType() + ".OnRecordingButtonClick: animation clip saved to " + Path.Combine(AnimationClipsFolderPath, AnimationClipName));
                     cancelReplayButton.gameObject.SetActive(true);
